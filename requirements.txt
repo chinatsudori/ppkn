@@ -1,0 +1,7 @@
+discord.py
+gspread
+google-api-python-client
+pytz
+pillow
+python-dateutil
+pynacl
