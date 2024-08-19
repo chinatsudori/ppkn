@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 import pytz
 import re
 
+dt = datetime
+
 def add_hours_to_time(start_time, hours):
     """Add hours to a given datetime object."""
     return start_time + timedelta(hours=hours)
