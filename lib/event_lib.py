@@ -1,5 +1,5 @@
 from discord.ext import commands, tasks
-from lib.time_lib import parse_duration_from_title, calculate_end_time, dt
+from lib.time_lib import parse_duration_from_title, dt
 from config import CHANNEL_ID, GUILD_ID
 from lib.error_handler import log_error
 class EventManager(commands.Cog):
