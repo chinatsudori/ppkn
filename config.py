@@ -19,6 +19,6 @@ SCOPE = [
     "https://spreadsheets.google.com/feeds",
     "https://www.googleapis.com/auth/drive",
 ]
-CREDS_PATH = "./penpokurin-6af7c80f9063.json"
+CREDS_PATH = "./ppkn-key.json"
 SHEET = "Origami Clan Tools"
 ARCHIVE = "Origami CB count"
