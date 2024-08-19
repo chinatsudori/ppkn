@@ -1,7 +1,6 @@
 from discord.ext import commands, tasks
-from lib.time_lib import parse_duration_from_title, dt
 from config import CHANNEL_ID, GUILD_ID
-from lib.error_handler import log_error
+
 class EventManager(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -14,14 +13,17 @@ class EventManager(commands.Cog):
         try:
             await self.manage_events()
         except Exception as e:
+            from lib.error_handler import log_error
             error_message = f"An error occurred in the background task: {e}"
             print(error_message)  # Debug print
             await log_error(error_message)
 
     async def manage_events(self):
         """Check events and manage them based on their start and end times."""
+        from lib.time_lib import parse_duration_from_title, dt, calculate_end_time
         guild = self.bot.get_guild(GUILD_ID)
         if not guild:
+            from lib.error_handler import log_error
             error_message = "Guild not found"
             print(error_message)  # Debug print
             await log_error(error_message)
@@ -50,9 +52,11 @@ class EventManager(commands.Cog):
         channel = self.bot.get_channel(CHANNEL_ID)
         if channel:
             await channel.send(f"The event {event.name} is starting now!")
+            from lib.error_handler import log_error
             log_message = f"Event {event.name} has started."
             await log_error(log_message)
         else:
+            from lib.error_handler import log_error
             error_message = f"Channel {CHANNEL_ID} not found for event announcement."
             print(error_message)  # Debug print
             await log_error(error_message)
@@ -60,6 +64,7 @@ class EventManager(commands.Cog):
     async def remove_event(self, event):
         """Logic to remove an event."""
         await event.delete()
+        from lib.error_handler import log_error
         log_message = f"Event {event.name} has been removed."
         print(log_message)  # Debug print
         await log_error(log_message)

@@ -66,6 +66,19 @@ def parse_date_str(date_str):
 
     raise ValueError(f"Date format is incorrect: {date_str}")
 
+
+def iso_format(dt):
+    """Return ISO 8601 format of a datetime object."""
+    return dt.isoformat()
+
+
 def parse_duration_from_title(title):
-    """Extracts duration in days from the event title. Implementation needed."""
-    pass
+    """Extracts duration in days from the event title."""
+    match = re.search(r'\((\d+) days?\)', title)
+    if match:
+        return int(match.group(1))
+    return 0
+
+def calculate_end_time(start_time, duration_days):
+    """Calculates the end time of an event based on the start time and duration."""
+    return start_time + timedelta(days=duration_days)
